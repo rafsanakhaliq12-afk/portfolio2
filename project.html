@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Projects</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+nav {
+  padding: 15px;
+  text-align: right;
+}
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+nav ul li {
+  display: inline;
+  margin: 0 15px;
+}
+nav ul li a {
+  text-decoration: none;
+  color: white;
+}
+nav ul li a.active {
+  border-bottom: 2px solid cyan;
+}
+
+
+    body {
+      background:#0b1220;
+      color: white;
+      transition: 0.3s;
+      padding: 20px;
+    }
+
+    body.light {
+      background: #f4f4f4;
+      color: #222;
+    }
+
+    h2 {
+      margin-bottom: 15px;
+    }
+
+    .btn {
+      background: #00bcd4;
+      border: none;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px 0;
+    }
+
+    .btn:hover {
+      opacity: 0.8;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #444;
+    }
+
+    body.light th, 
+    body.light td {
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background: #333;
+    }
+
+    body.light th {
+      background: #ddd;
+    }
+
+    .actions button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      margin: 0 5px;
+      font-size: 16px;
+    }
+
+    .actions .delete {
+      color: #f44336;
+    }
+    
+    .toggle{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      margin-top:2rem;
+    }
+    .switch{
+      position:relative;width:60px;height:30px;
+    }
+    .switch input{display:none;}
+    .slider{
+      position:absolute;inset:0;
+      background:white;
+      border-radius:30px;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .slider:before{
+      content:"";
+      position:absolute;left:4px;top:4px;
+      width:22px;height:22px;
+      border-radius:50%;
+      background:#5e7d9f;
+      transition:.3s;
+    }
+    input:checked + .slider{background:#06b6d4;}
+    input:checked + .slider:before{transform:translateX(30px);}
+    .toggle span{font-size:.9rem;color:#94a3b8;}
+
+    
+    @media(max-width:768px){
+      .hero{flex-direction:column;}
+      .content{text-align:center;}
+    }
+    
+  </style>
+</head>
+<body>
+  <nav>
+<ul>
+      <li><a href="intro2.html">Home</a></li>
+      <li><a href="project.html" class="active">Projects</a></li>
+      <li><a href="contact.html">Contact Me</a></li>
+    </ul>
+
+  </nav>
+
+
+
+  
+  <button class="btn" onclick="addProject()">+ Add New Project</button>
+
+  <table id="projectsTable">
+    <thead>
+      <tr>
+        <th>Project Name</th>
+        <th>Description</th>
+        <th>Technologies Used</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Portfolio Site</td>
+        <td>My personal website</td>
+        <td>HTML, CSS, JS</td>
+        <td class="actions">
+          <button class="delete" onclick="deleteRow(this)">🗑</button>
+        </td>
+      </tr>
+      <tr>
+        <td>Task Manager</td>
+        <td>Simple task manager</td>
+        <td>HTML, CSS, JS</td>
+        <td class="actions">
+          <button class="delete" onclick="deleteRow(this)">🗑</button>
+        </td>
+      </tr>
+        <td>TO-DO-LIST</td>
+        <td>javascript project</td>
+        <td>HTML, CSS, JS</td>
+        <td class="actions">
+          <button class="delete" onclick="deleteRow(this)">🗑</button>
+        </td>
+      </tr>
+        <td>toggle button</td>
+        <td>Simple javascript task</td>
+        <td>HTML, CSS, JS</td>
+        <td class="actions">
+          <button class="delete" onclick="deleteRow(this)">🗑</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+<div class="toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+        <span>TOGGLE LIGHT/DARK THEME</span>
+      </div>
+    </div>
+  </section>
+  <script>
+   const toggle = document.getElementById("themeToggle");
+const body = document.body;
+const navLinks = document.querySelectorAll("nav ul li a");
+
+toggle.addEventListener("change", () => {
+  if (toggle.checked) {
+   
+    body.style.background = "#f8fafc";
+    body.style.color = "#111";
+
+   
+    navLinks.forEach(link => link.style.color = "#111");
+  } else {
+    
+    body.style.background = "#0b1220";
+    body.style.color = "#fff";
+
+   
+    navLinks.forEach(link => link.style.color = "#fff");
+  }
+});
+
+    function deleteRow(btn) {
+      let row = btn.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+
+   
+
+    function addProject() {
+      let table = document.getElementById("projectsTable").getElementsByTagName('tbody')[0];
+
+      let name = prompt("Enter Project Name:");
+      let desc = prompt("Enter Description:");
+      let tech = prompt("Enter Technologies:");
+
+      if(name && desc && tech) {
+        let newRow = table.insertRow();
+
+        newRow.innerHTML = `
+          <td>${name}</td>
+          <td>${desc}</td>
+          <td>${tech}</td>
+          <td class="actions">
+          
+            <button class="delete" onclick="deleteRow(this)">🗑</button>
+          </td>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

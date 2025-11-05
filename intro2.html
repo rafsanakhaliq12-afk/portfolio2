@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rafsana Portfolio</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:sans-serif;}
+    body{
+      background:#0b1220;
+      color:#fff;
+      padding:2rem;
+    }
+    nav{
+      display:flex;
+      justify-content:flex-end;
+      gap:2rem;
+      margin-bottom:3rem;
+    }
+    nav a{
+      text-decoration:none;
+      color:#cbd5e1;
+      font-weight:500;
+      position:relative;
+    }
+    nav a.active,
+    nav a:hover{color:#06b6d4;}
+    nav a.active::after{
+      content: "";
+      position: relative;
+      bottom:-6px;left:0;
+      width:100%;height:2px;
+      background:#06b6d4;
+    }
+
+   
+    .hero{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:3rem;
+      flex-wrap:wrap;
+    }
+
+
+.video-wrapper{
+  width:480px;
+  height:270px;
+  border-radius:12px;
+  overflow:hidden;
+  border:4px solid #06b6d4;
+  box-shadow:0 0 26px #06b6d4aa;
+  flex-shrink:0;
+}
+.video-wrapper iframe,
+.video-wrapper video{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+
+    .content{
+      max-width:500px;
+    }
+    .content h1{
+      font-size:2.5rem;
+      margin-bottom:.3rem;
+    }
+    .content h2{
+      font-size:1.2rem;
+      color:#06b6d4;
+      margin-bottom:1rem;
+    }
+    .content p{
+      color:#cbd5e1;
+      line-height:1.5;
+    }
+
+
+    .toggle{
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      margin-top:2rem;
+    }
+    .switch{
+      position:relative;width:60px;height:30px;
+    }
+    .switch input{display:none;}
+    .slider{
+      position:absolute;inset:0;
+      background:white;
+      border-radius:30px;
+      cursor:pointer;
+      transition:.3s;
+    }
+    .slider:before{
+      content:"";
+      position:absolute;left:4px;top:4px;
+      width:22px;height:22px;
+      border-radius:50%;
+      background:#5e7d9f;;
+      transition:.3s;
+    }
+    input:checked + .slider{background:#06b6d4;}
+    input:checked + .slider:before{transform:translateX(30px);}
+    .toggle span{font-size:.9rem;color:#94a3b8;}
+
+    
+    @media(max-width:768px){
+      .hero{flex-direction:column;}
+      .content{text-align:center;}
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="intro2.html" class="active">Home</a>
+    <a href="project.html">Projects</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+
+
+  <section class="hero">
+    <div class="video-wrapper">
+  <video controls autoplay muted loop>
+    <source src="l Web Developer Portfolio Presentation.mp4" type="video/mp4" />
+    <source src="l Web Developer Portfolio Presentation.webm" type="video/webm" />
+    <p>Your browser does not support HTML5 video. Here is a <a href="l Web Developer Portfolio Presentation.mp4">link to the video</a> instead.</p>
+  </video>
+</div>
+
+
+  
+    <div class="content">
+      <h1>Hi, I'm Rafsana khaliq</h1>
+      <h2>PROGRESSIVE WEB DEVELOPER</h2>
+      <p>
+        Welcome to my corner of the internet. I build responsive, user-friendly applications 
+        that bring ideas to life. Explore my projects and learn more about my journey.
+      </p>
+
+      <div class="toggle">
+        <label class="switch">
+          <input type="checkbox" id="themeToggle" />
+          <span class="slider"></span>
+        </label>
+        <span>TOGGLE LIGHT/DARK THEME</span>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    const toggle=document.getElementById("themeToggle");
+    toggle.addEventListener("change",()=>{
+      document.body.style.background=toggle.checked?"#f8fafc":"#0b1220";
+      document.body.style.color=toggle.checked?"#111":"#fff";
+    });
+  </script>
+</body>
+</html>
